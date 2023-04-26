@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Slider Example</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+	
+<style type="text/css">
+.case_study_slide {
+    border: 1px solid #00000024;
+    padding: 18px;
+}
+.case_study_slide h6, .single_case_study h6 {
+    font-size: 18px;
+    line-height: 27px;
+    margin-bottom: 24px;
+    color: #04395D;
+    background-color: rgb(8 114 185 / 21%);
+    width: fit-content;
+    padding: 10px;
+}
+.case_study_slide h4, .single_case_study h4 {
+    margin-bottom: 12px;
+    font-size: 20px;
+    line-height: 28px;
+    color: #000000;
+    font-weight: 700;
+}
+.case_study_slide p, .single_case_study .key_benefits_col p {
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+}
+.case_study_slide_sec .case_study_slide {
+    margin: 0 7.5px;
+}
+.case_study_slide_sec .slick-arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+    background: #CAE1F0;
+    z-index: 1;
+	transform: translate(0%, -50%);
+}
+.case_study_slide_sec .slick-prev {
+    left: -67px;
+}
+.case_study_slide_sec .slick-next {
+    right: -67px;
+} 
+.case_study_slide_sec .slick-next:after {
+    top: 14px;
+    left: 12px;
+}
+.case_study_slide_sec .slick-prev:after {
+    top: 14px;
+    left: 15px;
+}
+.case_study_slide_sec .slick-arrow:after {
+    position: absolute;
+    content: "";
+    width: 11px;
+    height: 11px;
+    border-right: 2px solid #3E2A4C;
+    border-bottom: 2px solid #3E2A4C;
+}
+.case_study_slide_sec .slick-prev:after {
+    transform: rotate(135deg);
+}
+.case_study_slide_sec .slick-next:after {
+    transform: rotate(-45deg);
+}
+.case_study_slide.slick-current.slick-active {
+    background: transparent linear-gradient(54deg, #22946D 0%, #3885AA 100%) 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000024;
+	border: 1px solid #22946D;
+}
+.case_study_slide.slick-current.slick-active h6 {
+    background: #fff;
+    color: #000;
+}
+.case_study_slide.slick-current.slick-active h4, .case_study_slide.slick-current.slick-active p {
+    color: #fff;
+}
+.case_study_slide_sec {
+    max-width: 1185px;
+    margin: 0 auto;
+}
+
+/*Slider Dots css */
+.case_study_slide_sec .slick-dots {
+	text-align: center;
+    list-style-type: none;
+    height: 12px;
+    padding: 0;
+}
+.case_study_slide_sec .slick-dots li {
+    display: inline-block;
+}
+.case_study_slide_sec .slick-dots li.slick-active button {
+    background: #F2600C;
+}
+.case_study_slide_sec .slick-dots li button {
+    height: 12px;
+    width: 12px;
+    background-color: rgb(135 145 159 / 50%);
+    font-size: 0;
+    display: block;
+    padding: 0;
+    margin: 0 2px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="case_study_slide_sec" data-id="case_popup_1">
+   <div class="case_study_slide">
+      <h6>Product Interoperability & Extension</h6>
+      <h4>Scalable platform with integration points for interoperability across disparate systems of a leading investor service group</h4>
+      <p class="client">Client: Leading Investor Service Group</p>
+      <div class="key_point d-none">
+         <p class="key-1">Single Source of Truth</p>
+         <p class="key-2">Deeper Insights Into Client Opportunity</p>
+         <p class="key-3">Better Customer Engagement</p>
+         <p class="key-4">CI/CD</p>
+      </div>
+   </div>
+   <div class="case_study_slide" data-id="case_popup_2">
+      <h6>Product & Technology Consulting</h6>
+      <h4>Next-gen security information product processing petabyte-scale data</h4>
+      <p class="client">Client: Media Holding Company</p>
+      <div class="key_point d-none">
+         <p class="key-1">Deeper Insights Into Client Opportunity</p>
+         <p class="key-2">Single Source of Truth</p>
+         <p class="key-3">CI/CD</p>
+         <p class="key-4">Better Customer Engagement</p>
+      </div>
+   </div>
+   <div class="case_study_slide" data-id="case_popup_3">
+      <h6>Data as a Product</h6>
+      <h4>Health Data as a Product to transition from fee-for-service to value-based-service</h4>
+      <p class="client">Client: Healthcare ISV</p>
+      <div class="key_point d-none">
+         <p class="key-1">Single Source of Truth</p>
+         <p class="key-2">Deeper Insights Into Client Opportunity</p>
+         <p class="key-3">Better Customer Engagement</p>
+         <p class="key-4">CI/CD</p>
+      </div>
+   </div>
+   <div class="case_study_slide" data-id="case_popup_4">
+      <h6>Product Modernization</h6>
+      <h4>Low code platform driving rapid application building across pharmaceutical value chain</h4>
+      <p class="client">Client: Management Consulting Firm</p>
+      <div class="key_point d-none">
+         <p class="key-1">Deeper Insights Into Client Opportunity</p>
+         <p class="key-2">Single Source of Truth</p>
+         <p class="key-3">CI/CD</p>
+         <p class="key-4">Better Customer Engagement</p>
+      </div>
+   </div>
+</div>
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	
+	  jQuery('.case_study_slide_sec').slick({
+	      infinite: true,
+	      slidesToShow: 3,
+	      slidesToScroll:1,
+	      arrows:true,
+		  autoplay: false,
+  		  autoplaySpeed: 2000,
+		  dots: true,
+	      lazyLoad: false,
+	      responsive: [
+	        {
+	          breakpoint: 1025,
+	          settings: {
+	            slidesToShow: 2,
+				slidesToScroll: 1
+	          }
+	        },
+		  	{
+	          breakpoint: 767,
+	          settings: {
+	            slidesToShow: 1,
+				slidesToScroll: 1
+	          }
+	        }]
+	    });
+	
+		// Code to change Case Study Information after changeing slide 
+	
+		var slider = jQuery('.case_study_slide_sec.slick-slider'); 
+		// Get the initial active slide
+		var activeSlide = slider.find('.slick-current');
+
+		// Set up the afterChange event
+		slider.on('afterChange', function(event, slick, currentSlide) {
+			// Get the new active slide
+			var activeSlide = slider.find('.slick-current');
+			var case_title = activeSlide.find('h4').text();
+			var case_categ = activeSlide.find('h6').text();
+			var case_info = activeSlide.find('p.client').text();
+			var case_id = activeSlide.attr('data-id');
+			var key_1 = activeSlide.find('.key-1').text();
+			var key_2 = activeSlide.find('.key-2').text(); 
+			var key_3 = activeSlide.find('.key-3').text();  
+			var key_4 = activeSlide.find('.key-4').text(); 
+
+			jQuery('.single_case_study > h6').text(case_categ);
+			jQuery('.single_case_study > h4').text(case_title);
+			jQuery('.single_case_study > p').text(case_info); 
+			jQuery('.single_case_study .key_benefits_col .key-1').text(key_1); 
+			jQuery('.single_case_study .key_benefits_col .key-2').text(key_2); 
+			jQuery('.single_case_study .key_benefits_col .key-3').text(key_3); 
+			jQuery('.single_case_study .key_benefits_col .key-4').text(key_4);
+			
+			if(jQuery('.case_study_slide_sec .slick-current.slick-active').attr('data-slick-index')=="0") {
+    			jQuery('.single_case_study .open-popup').attr('data-id','case_popup_1');
+			}
+			else {
+				jQuery('.single_case_study .open-popup').attr('data-id',case_id);
+			}
+					
+		});
+	
+  });
+</script>
+
+</body>
+</html>
