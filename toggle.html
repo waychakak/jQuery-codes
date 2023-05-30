@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+<style>
+.toggle-switch-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.primary-toggle, .secondary-toggle {
+    color: #0F172A;
+    font-family: "Inter", Sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 26px;
+}
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+.toggle-input {
+    display: none;
+}
+.toggle-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1E40AF;
+    border-radius: 34px;
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+.toggle-label:before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    top: 5px;
+    left: 5px;
+    transition: transform 0.4s;
+}
+.toggle-input:checked + .toggle-label {
+    background-color: #2563EB;
+}
+.toggle-input:checked + .toggle-label:before {
+    transform: translateX(30px);
+}
+</style>
+</head>
+<body>
+
+    <div class="toggle-switch-inner">
+        <div class="primary-toggle active">Monthly
+        </div>
+        <div class="toggle-switch">
+          <input type="checkbox" id="toggle" class="toggle-input">
+          <label for="toggle" class="toggle-label"></label>
+        </div>
+        <div class="secondary-toggle">Yearly</div>
+    </div>
+    
+
+<script>
+    jQuery('#toggle').change(function() {
+    if (jQuery(this).is(':checked')) {
+        jQuery('.web-starter-price p').text('USD 3500');
+    }
+    else {
+        jQuery('.web-starter-price p').html('USD 299 <span class="smal-price-info">for 12 months</span>');
+    }
+    });
+</script>
+</body>
+</html>
