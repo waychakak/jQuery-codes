@@ -117,6 +117,39 @@
     margin: 0 2px;
     cursor: pointer;
 }
+
+
+
+
+.container {
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.section {
+  height: 100vh;
+  position: absolute;
+  width: 100%;
+}
+
+.section1 {
+  background-color: #f0f0f0;
+}
+
+.section2 {
+  background-color: #e0e0e0;
+  top: 100%;
+}
+
+.section3 {
+  background-color: #d0d0d0;
+  top: 200%;
+}
+
+
+
+
 </style>
 </head>
 <body>
@@ -167,6 +200,34 @@
       </div>
    </div>
 </div>
+
+<div class="container">
+<div class="section section1">
+    <div class="card">
+      <img src="card1.png" alt="Card 1 Image">
+      <h3>Reduce the risks and costs associated with security incidents and data breaches.</h3>
+    </div>
+</div>
+
+<div class="section section2">
+    <div class="card">
+      <img src="card1.png" alt="Card 2 Image">
+      <h3>Get more ROI from the security tools and technology you use today.</h3>
+    </div>
+</div>
+
+<div class="section section3">
+    <div class="card">
+      <img src="card1.png" alt="Card 3 Image">
+      <h3>Boost your cyber insurance coverage eligibility.</h3>
+    </div>
+</div>
+</div>
+
+
+
+
+
 
 <script type="text/javascript">
 jQuery(document).ready(function(){
@@ -234,6 +295,16 @@ jQuery(document).ready(function(){
 		});
 	
   });
+
+
+jQuery(document).ready(function() {
+  jQuery(window).scroll(function() {
+    var scrollTop = jQuery(window).scrollTop();
+    jQuery('.section').css('transform', 'translateY(' + (-scrollTop) + 'px)');
+  });
+});
+
+
 </script>
 
 </body>
