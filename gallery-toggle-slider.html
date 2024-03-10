@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Gallery Toggle & Slider</title>
+<style type="text/css">
+*, body {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}	
+img {
+    border-style: none;
+    height: auto;
+    max-width: 100%;
+}
+.img-container {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+}
+.image_gallery {
+    margin: auto;
+    max-width: 1024px;
+    height: 80%;
+    padding: 60px 24px 40px 24px;
+    background-color: #fff;
+    overflow-y: auto;
+	position: relative;
+	border-radius: 8px;
+    border: 1px solid #D5D9D9; 
+    box-shadow: 0 0 14px 0 rgba(15,17,17,.5);
+} 
+.image_gallery .sing-img-outer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+} 
+.single-img p {
+    display: none;
+}
+img {
+    max-width: 100%;
+}
+.single-img img {
+    cursor: pointer;
+    display: block;
+    aspect-ratio: 13/9;
+    width: 100%;
+    object-fit: cover;
+    margin: 0 auto;
+}
+.single-img {
+    background-color: #f5eeee;
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid #c5c5c5;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+}
+.modal-content {
+    margin: auto;
+    display: flex;
+	align-items: center;
+    max-width: 1024px;
+    height: 80%;
+    padding: 60px 24px 40px;
+    background-color: #fff;
+	position: relative;
+	row-gap: 24px;
+	border-radius: 8px;
+    border: 1px solid #D5D9D9;
+    box-shadow: 0 0 14px 0 rgba(15,17,17,.5);
+}
+.modal-content img {
+    max-width: 100%;
+    max-height: 100%;
+}
+.openGalleryBtn.white {
+	color: #FFF;
+}
+.openGalleryBtn {
+	cursor: pointer;
+    background: transparent;
+    border: unset;
+    padding: 0;
+    display: block;
+    width: 100%;
+    color: #2D3138;
+    font-family: "Rubik", Sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    padding-top: 30px;
+}
+.openGalleryBtn:hover, .openGalleryBtn:focus {
+    background-color: transparent;
+    color: #22D1B6;
+    outline: none;
+}
+.gallery-close-outer, .close-outer {
+    border-bottom: 1px solid #D5D9D9;
+    background-color: #F0F2F2;
+    border-radius: 8px 8px 0 0;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+}
+.close-img-gallery, .close {
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 26px;
+    font-family: 'Rubik';
+    padding: 12px 24px;
+    cursor: pointer;
+    width: fit-content;
+    text-align: right;
+    float: right;
+}
+.close-outer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.view_gallery img {
+    width: 22px;
+    height: 22px;
+}
+.view_gallery {
+	cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    column-gap: 8px;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 500;
+    font-family: 'Rubik';
+    color: #2D3138;
+}
+.modal-content a.next {
+    position: absolute;
+    left: calc(69% - 35px);
+} 
+.modal-content a.prev {
+    position: absolute;
+    left: 42px;
+}
+.modal-content a.prev, .modal-content a.next {
+    font-size: 40px;
+    line-height: 40px;
+	cursor: pointer;
+    color: #3c3c3d;
+}
+.modal-content .moda-cont-img {
+    width: 70%;
+    background-color: #eff6ff;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+	justify-content: center;
+    height: 100%;
+} 
+.modal-content .moda-cont-desc {
+    width: 30%;
+    padding-left: 30px;
+    display: flex;
+    height: 100%;
+	overflow-y: auto;
+}
+p.modalDesc.desc {
+    font-family: "Rubik", Sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #2D3138;
+    margin-bottom: 0;
+}
+</style>
+</head>
+<body>
+
+<h1>Image Gallery With Slider section.</h1>
+<section>
+	<button class="openGalleryBtn" data-gallery-id="gallery1">See all photos ❯</button>	
+	
+	<div class="img-container" id="gallery1">
+
+	    <div class="image_gallery">
+	        <div class="gallery-close-outer"> <div class="close-img-gallery">×</div> </div>
+	        <div class="sing-img-outer">
+	            <div class="single-img">
+	                <img decoding="async" src="https://easyserv.co.in/wp-content/uploads/2024/02/online-book-01.png">
+	                <p class="desc">Customer convenience and flexibility Self-managed appointments Mobility and accessibility Secure online payments via a choice of gateway Increased data collection and accuracy Improved appointment scheduling efficiency Increased customer satisfaction and loyalty Increased profitability </p>
+	            </div>
+	            <div class="single-img">
+	                <img decoding="async" src="https://easyserv.co.in/wp-content/uploads/2024/02/online-book-02.png">
+	                <p class="desc">Gives businesses the ability to track and monitor the progress of service bookings in real-time. Provides customers with on-demand visibility into their vehicle’s progress through the service workflow, similar to Domino’s Pizza, Uber, courier</p>
+	            </div>
+	            <div class="single-img">
+	                <img decoding="async" src="https://easyserv.co.in/wp-content/uploads/2024/02/online-book-03.png">
+	                <p class="desc">Customer convenience and flexibility Self-managed appointments Mobility and accessibility Secure online payments via a choice of gateway Increased data collection and accuracy Improved appointment scheduling efficiency Increased customer satisfaction and loyalty Increased profitability </p>
+	            </div>
+	            <div class="single-img">
+	                <img decoding="async" src="https://easyserv.co.in/wp-content/uploads/2024/02/online-book-04.png">
+	                <p class="desc">Gives businesses the ability to track and monitor the progress of service bookings in real-time. Provides customers with on-demand visibility into their vehicle’s progress through the service workflow, similar to Domino’s Pizza, Uber, courier</p>
+	            </div>
+	            <div class="single-img">
+	                <img decoding="async" src="https://easyserv.co.in/wp-content/uploads/2024/02/online-book-05.png">
+	                <p class="desc">Gives businesses the ability to track and monitor the progress of service bookings in real-time. Provides customers with on-demand visibility into their vehicle’s progress through the service workflow, similar to Domino’s Pizza, Uber, courier</p>
+	            </div>
+	        </div>
+	    </div>
+
+	</div>
+
+</section>
+	
+<section>
+	<button class="openGalleryBtn" data-gallery-id="gallery2">See all photos ❯</button>
+	<div class="img-container" id="gallery2">
+
+	    <div class="image_gallery">
+	        <div class="gallery-close-outer"> <div class="close-img-gallery">×</div> </div>
+	        <div class="sing-img-outer">
+	            <div class="single-img">
+	                <img decoding="async" src="https://easyserv.co.in/wp-content/uploads/2024/02/workshop-management-01.png">
+	                <p class="desc">Customer convenience and flexibility Self-managed appointments Mobility and accessibility Secure online payments via a choice of gateway Increased data collection and accuracy Improved appointment scheduling efficiency Increased customer satisfaction and loyalty Increased profitability </p>
+	            </div>
+	            <div class="single-img">
+	                <img decoding="async" src="https://easyserv.co.in/wp-content/uploads/2024/02/workshop-management-02.png">
+	                <p class="desc">Gives businesses the ability to track and monitor the progress of service bookings in real-time. Provides customers with on-demand visibility into their vehicle’s progress through the service workflow, similar to Domino’s Pizza, Uber, courier</p>
+	            </div>
+	            <div class="single-img">
+	                <img decoding="async" src="https://easyserv.co.in/wp-content/uploads/2024/02/workshop-management-03.png">
+	                <p class="desc">Customer convenience and flexibility Self-managed appointments Mobility and accessibility Secure online payments via a choice of gateway Increased data collection and accuracy Improved appointment scheduling efficiency Increased customer satisfaction and loyalty Increased profitability </p>
+	            </div>
+	            <div class="single-img">
+	                <img decoding="async" src="https://easyserv.co.in/wp-content/uploads/2024/02/workshop-management-04.png">
+	                <p class="desc">Gives businesses the ability to track and monitor the progress of service bookings in real-time. Provides customers with on-demand visibility into their vehicle’s progress through the service workflow, similar to Domino’s Pizza, Uber, courier</p>
+	            </div>
+	            <div class="single-img">
+	                <img decoding="async" src="https://easyserv.co.in/wp-content/uploads/2024/02/workshop-management-05.png">
+	                <p class="desc">Gives businesses the ability to track and monitor the progress of service bookings in real-time. Provides customers with on-demand visibility into their vehicle’s progress through the service workflow, similar to Domino’s Pizza, Uber, courier</p>
+	            </div>
+	        </div>
+	    </div>
+
+	</div>
+</section>
+
+
+<div class="modal">
+    
+    <div class="modal-content">
+        <div class="close-outer">
+            <div class="view_gallery">
+                <span> <img decoding="async" src="https://easyserv.co.in/wp-content/uploads/2024/02/gallery.png" alt="image-gallery"> </span>
+                <span> View Image Gallery </span>
+            </div>
+            <div class="close">×</div>
+        </div>
+        <div class="moda-cont-img">
+            <img decoding="async" class="modalImg" src="">
+        </div>
+        <div class="moda-cont-desc">
+            <p class="modalDesc desc"></p>
+        </div>
+        <a class="prev">❮</a>
+        <a class="next">❯</a>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+document.addEventListener('DOMContentLoaded', function() {
+    function initializeGallery(container) {
+        var modal = document.querySelector('.modal');
+        var modalImg = modal.querySelector('.modalImg');
+        var modalDesc = modal.querySelector('.modalDesc');
+        var closeGal = container.querySelector('.close-img-gallery');
+        var images = container.querySelectorAll('.single-img img');
+        var descriptions = container.querySelectorAll('.desc');
+        var imgContId = container.getAttribute("id");
+        var viewGallery = document.querySelector('.view_gallery');
+        var currentIndex = 0;
+
+        function showImage(index) {
+            modalImg.src = images[index].src;
+            modalDesc.textContent = descriptions[index].textContent;
+            currentIndex = index;
+        }
+
+        function showNextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+
+        function showPreviousImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+
+        viewGallery.onclick = function() {
+            var galleryElement = document.getElementById(imgContId);
+            if (galleryElement) {
+               galleryElement.style.display = "flex";
+               modal.style.display = "none";
+            }
+        }
+
+        images.forEach(function(img, index) {
+            img.onclick = function() {
+            closeGal.closest('.img-container').style.display ="none";
+                modal.style.display = "flex";
+                showImage(index);
+            };
+        });
+
+        modal.querySelector('.close').onclick = function() {
+            modal.style.display = "none";
+        };
+
+        closeGal.onclick = function() {
+            container.style.display = "none";
+        };
+
+        modal.querySelector('.next').onclick = function() {
+            showNextImage();
+        };
+
+        modal.querySelector('.prev').onclick = function() {
+            showPreviousImage();
+        };
+    }
+
+    var galleryBtns = document.querySelectorAll('.openGalleryBtn');
+    galleryBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var containerId = this.getAttribute('data-gallery-id');
+            var container = document.getElementById(containerId);
+            initializeGallery(container);
+            container.style.display = "flex";
+        });
+    });
+
+    // Event delegation for closing img-container divs
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('close-img-gallery')) {
+            const imgContainer = event.target.closest('.img-container');
+            if (imgContainer) {
+                imgContainer.style.display = 'none';
+            }
+        }
+    });
+});
+
+	
+</script>
+
+</body>
+</html>
